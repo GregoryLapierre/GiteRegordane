@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block body %}
+	<main>
+		<img class="img_vector1" src="/img/Vector1.png" alt="image_vector">
+		<h2>BIENVENUE</h2>
+
+		<section class="text-center mt-5 section_main_home">
+			<article class="article_kitchen">
+				<h4>Salon / Cuisine</h4>
+				<a type="button" data-bs-toggle="modal" data-bs-target="#modal_salon">
+					<img class="w-100 my-3 img_main_home" src="/img/cuisine.jpg" alt="cuisine" height="310">
+				</a>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</article>
+			<article class="article_chambre1">
+				<h4>Chambre 1</h4>
+				<a type="button" data-bs-toggle="modal" data-bs-target="#modal_chambre1">
+					<img class="w-100 my-3 img_main_home" src="/img/chambre1.jpg" alt="chambre1" height="310">
+				</a>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</article>
+			<article class="article_chambre2">
+				<h4>Chambre 2</h4>
+				<a type="button" data-bs-toggle="modal" data-bs-target="#modal_chambre2">
+					<img class="w-100 my-3 img_main_home" src="/img/chambre2.jpg" alt="chambre2" height="310">
+				</a>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</article>
+		</section>
+
+		<div class="d-flex justify-content-center">
+			<a class="btn shadow my-5 d-flex align-items-center justify-content-center btn_reserver_home" href="{{ path('app_reservation') }}" role="button">Réserver</a>
+		</div>
+
+		<img class="img_vector2_home" src="/img/Vector2.png" alt="image_vector">
+
+		<section class="mt-5 d-flex justify-content-center flex-column text-center px-2 band_green">
+			<article class="row d-flex align-items-center">
+				<div class="col">
+					<img src="/img/transat.png" alt="logo_transat" width="60">
+				</div>
+				<div class="col">
+					<img src="/img/mountain.png" alt="logo_mountain" width="60">
+				</div>
+				<div class="col">
+					<img src="/img/handicap.png" alt="logo_handicap" width="60">
+				</div>
+				<div class="col">
+					<img class="img_band_green" src="/img/wifi.png" alt="logo_wifi" width="60">
+				</div>
+			</article>
+			<article class="row mt-2 text_band_green">
+				<div class="col">
+					<p class="">Environnement calme</p>
+				</div>
+				<div class="col">
+					<p>Proche du GR 700</p>
+				</div>
+				<div class="col">
+					<p>Accès adaptés</p>
+				</div>
+				<div class="col">
+					<p>Wifi gratuite</p>
+				</div>
+			</article>
+		</section>
+	</main>
+
+	<!-- Modal -->
+	<div class="modal fade" id="modal_salon" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">Salon / Cuisine</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body p-0">
+					<img class="w-100" src="/img/cuisine.jpg" alt="cuisine">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="modal_chambre1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">Chambre 1</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body p-0">
+					<img class="w-100" src="/img/chambre1.jpg" alt="cuisine">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="modal_chambre2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">Chambre 2</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body p-0">
+					<img class="w-100" src="/img/chambre2.jpg" alt="cuisine">
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

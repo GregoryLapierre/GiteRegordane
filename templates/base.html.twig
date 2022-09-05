@@ -1,19 +1,214 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link
+		rel="icon" href="../img/logo.png">
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+		<link href="../css/style.css" rel="stylesheet">
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="../js/script.js"></script>
+	</head>
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
-</html>
+	<body>
+		<header>
+			<img class="img_header" src="/img/header.jpg" alt="image_header">
+			<nav class="navbar navbar-expand-lg p-0 nav_header">
+				<img src="../img/logo.png" alt="logo" width="86" height="74">
+				<button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<img src="/img/toggle.png" alt="toggle" width="78" height="29">
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+						{% if app.request.uri == 'https://127.0.0.1:8000/' %}
+							<li class="nav-item mx-3">
+								<a class="nav-link link_active_header" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
+							</li>
+						{% else %}
+							<li class="nav-item mx-3">
+								<a class="nav-link" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
+							</li>
+						{% endif %}
+
+						{% if app.request.uri == 'https://127.0.0.1:8000/reservation' %}
+							<li class="nav-item mx-3">
+								<a class="nav-link link_active_header" href="{{ path('app_reservation') }}">Réserver</a>
+							</li>
+						{% else %}
+							<li class="nav-item mx-3">
+								<a class="nav-link" href="{{ path('app_reservation') }}">Réserver</a>
+							</li>
+						{% endif %}
+
+						<li class="nav-item mx-3">
+							<a class="nav-link" href="#">Nous trouver</a>
+						</li>
+						<li class="nav-item mx-3">
+							<a class="nav-link" href="#">Galerie</a>
+						</li>
+						<li class="nav-item mx-3">
+							<a class="nav-link" href="#">Contact</a>
+						</li>
+					</ul>
+					<ul class="navbar-nav me-2">
+						{% if app.user and app.user.isVerified == false %}
+							<li class="nav-item mx-3">
+								<a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
+							</li>
+						{% elseif app.user and app.user.isVerified == true %}
+							<li class="nav-item mx-3">
+								<p class="nav-link m-0">{{ app.user.firstname }}
+									{{ app.user.name }}</p>
+							</li>
+							<li class="nav-item mx-3">
+								<a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
+							</li>
+						{% else %}
+							{% if app.request.uri == 'https://127.0.0.1:8000/register' %}
+								<li class="nav-item mx-3">
+									<a class="nav-link link_active_header" href="{{ path('app_register') }}">M'inscrire</a>
+								</li>
+							{% else %}
+								<li class="nav-item mx-3">
+									<a class="nav-link" href="{{ path('app_register') }}">M'inscrire</a>
+								</li>
+							{% endif %}
+
+							{% if app.request.uri == 'https://127.0.0.1:8000/login' %}
+								<li class="nav-item mx-3">
+									<a class="nav-link link_active_header" href="{{ path('app_login') }}">Me connecter</a>
+								</li>
+							{% else %}
+								<li class="nav-item mx-3">
+									<a class="nav-link" href="{{ path('app_login') }}">Me connecter</a>
+								</li>
+							{% endif %}
+						{% endif %}
+					</ul>
+				</div>
+			</nav>
+			{% if app.user and app.user.isVerified == false %}
+				<div class="alert alert-warning alert-dismissible alert_mail_isVerified" role="alert">
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermé"></button>
+					<div class="alert-message">
+						<strong>Votre compte n'est pas activé</strong>, <a href="{{ path('resend_verif') }}">m'envoyer un lien d'activation</a>
+					</div>
+				</div>
+			{% endif %}
+
+			{% include "_partials/_flash.html.twig" %}
+
+			<div class="bg_title_header">
+				<h1>Gîte de la Régordane</h1>
+				<h5>À Saint-Martin-de-Valgagues, dans les Cévennes, proche d'Alès</h5>
+			</div>
+		</header>
+
+		{% block body %}{% endblock %}
+
+		<footer>
+			{% if app.request.uri == 'https://127.0.0.1:8000/' %}
+				<div class="d-flex">
+				{% else %}
+					<div class="d-flex border-top">
+					{% endif %}
+					<img class="logo_footer" src="../img/logo.png" alt="logo" width="300" height="218">
+					<section class="d-flex flex-column w-100">
+						<div class="d-flex section_footer">
+							<ul class="navbar-nav col">
+								<li class="fw-bold">
+									PLAN DE SITE
+								</li>
+
+								{% if app.request.uri == 'https://127.0.0.1:8000/' %}
+									<li class="mt-2 ms-3">
+										<a class="link_active_footer" href="{{ path('app_home') }}">Accueil</a>
+									</li>
+								{% else %}
+									<li class="mt-2 ms-3">
+										<a class="link_footer" href="{{ path('app_home') }}">Accueil</a>
+									</li>
+								{% endif %}
+
+								{% if app.request.uri == 'https://127.0.0.1:8000/reservation' %}
+									<li class="ms-3">
+										<a class="link_active_footer" href="{{ path('app_reservation') }}">Réserver</a>
+									</li>
+								{% else %}
+									<li class="ms-3">
+										<a class="link_footer" href="{{ path('app_reservation') }}">Réserver</a>
+									</li>
+								{% endif %}
+
+								<li class="ms-3">
+									<a class="link_footer" href="#">Nous trouver</a>
+								</li>
+								<li class="ms-3">
+									<a class="link_footer" href="#">Galerie</a>
+								</li>
+								<li class="ms-3">
+									<a class="link_footer" href="#">Contact</a>
+								</li>
+							</ul>
+							<ul class="navbar-nav col">
+								<li class="fw-bold connexion_title_footer">
+									CONNEXION
+								</li>
+								{% if app.user %}
+									<li class="mt-2 ms-2">
+										<a class="link_footer" href="{{ path('app_logout') }}">Me déconnecter</a>
+									</li>
+								{% else %}
+									{% if app.request.uri == 'https://127.0.0.1:8000/register' %}
+										<li class="mt-2 ms-2">
+											<a class="link_active_footer m-0" href="{{ path('app_register') }}">M'inscrire</a>
+										</li>
+									{% else %}
+										<li class="mt-2 ms-2">
+											<a class="link_footer m-0" href="{{ path('app_register') }}">M'inscrire</a>
+										</li>
+									{% endif %}
+
+									{% if app.request.uri == 'https://127.0.0.1:8000/login' %}
+										<li class="ms-2">
+											<a class="link_active_footer" href="{{ path('app_login') }}">Me connecter</a>
+										</li>
+									{% else %}
+										<li class="ms-2">
+											<a class="link_footer" href="{{ path('app_login') }}">Me connecter</a>
+										</li>
+									{% endif %}
+								{% endif %}
+							</ul>
+							<ul class="navbar-nav col">
+								<li class="fw-bold reglement-title-footer">
+									RÈGLEMENT
+								</li>
+								<li class="mt-2">
+									<a class="link_footer" href="#">Condition générale d'utilisation</a>
+								</li>
+								<li>
+									<a class="link_footer" href="#">Condition générale de vente</a>
+								</li>
+							</ul>
+						</div>
+						<p class="copyright">Copyright © 2022 Gîte de la Régordane</p>
+					</section>
+				</div>
+			</footer>
+		</body>
+	</body>
+</html></body></html>

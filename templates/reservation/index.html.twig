@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réservation
+{% endblock %}
+
+{% block body %}
+	<main>
+		<img class="img_vector1" src="/img/Vector1.png" alt="image_vector">
+		<h2>RÉSERVATION</h2>
+
+		<section class="my-5 mx-auto section_main_reservation">
+			<article class="article_img_reservation">
+					<img class="w-100 shadow img_main" src="/img/reservation.jpg" alt="image_façade">
+			</article>
+			<article class="border shadow form_reservation">
+				<form class="py-5 px-3">
+					<div class="row row-cols-2 gx-2 gy-5 section_form_reservation">
+						<span class="col py-2">
+							<p>Date de début</p>
+						</span>
+						<span class="col">
+							<label for="inputDateIn" class="visually-hidden">jj/mm/aaaa</label>
+							<input type="date" class="form-control shadow" id="inputDateIn" placeholder="jj/mm/aaaa" onchange="price()" onclick="dateMin()" required>
+						</span>
+						<span class="col py-2">
+							<p>Date de fin</p>
+						</span>
+						<span class="col">
+							<label for="inputDateOut" class="visually-hidden">jj/mm/aaaa</label>
+							<input type="date" class="form-control shadow" id="inputDateOut" placeholder="jj/mm/aaaa" onchange="price()" onclick="dateMin()" required>
+						</span>
+						<span class="col text_nbr_people">
+							<p>Nombre d'adultes</p>
+						</span>
+						<span class="col">
+							<label for="inputNumberPeople" class="visually-hidden">Nombre d'adultes</label>
+							<input type="number" min="1" class="form-control shadow" id="inputNumberPeople" placeholder="Nombres d'adultes" required>
+						</span>
+					</div>
+					<h4 class="text-center py-5" id="priceRender"></h4>
+					{# <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"> #}
+					<div class="d-flex justify-content-center">
+						<a class="btn shadow my-5 d-flex align-items-center justify-content-center btn_reserver_reservation" href="#" role="button">Réserver</a>
+					</div>
+				</form>
+			</article>
+		</section>
+		<img class="img_vector2_reservation" src="/img/Vector2.png" alt="image_vector">
+	</main>
+{% endblock %}

@@ -1,0 +1,327 @@
+header{
+    height: 554px;
+}
+
+.home:hover{
+    color: #02A5C3;
+}
+
+.img_header{
+    height: 554px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center -120px;
+    z-index: 2;
+    position: absolute;
+}
+
+.nav_header{
+    background-color: rgba(255, 255, 255 , 0.85);
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.bg_title_header{
+    background-color: rgba(193, 233, 126, 0.7);
+    color: white;
+    border-radius: 15px;
+    text-align: center;
+    padding: 15px;
+    max-width: 892px;
+    margin: auto;
+    position: relative;
+    z-index: 3;
+    top: 300px;
+}
+
+.link_active_header{
+    text-decoration: underline;
+    color: #02A5C3;
+}
+
+.link_active_footer{
+    color: black;
+}
+
+.link_active_footer:hover{
+    color: black;
+}
+
+.link_footer{
+    color: #02A5C3;
+    text-decoration: none;
+}
+
+.link_footer:hover{
+    color: #02a6c3be;
+    text-decoration: underline;
+}
+
+.img_vector1{
+    position: absolute;
+    top: 530px;
+    right: 0;
+    z-index: 1;
+}
+
+.img_vector2_home{
+    position: absolute;
+    top: 1085px;
+    left: 0;
+    z-index: 1;
+}
+
+.img_vector2_reservation{
+    position: absolute;
+    top: 1085px;
+    left: 0;
+    z-index: 1;
+}
+
+h2{
+    color: #02A5C3;
+    z-index: 5;
+    position: relative;
+    margin: 3rem 0 1rem 0;
+    text-align: center;
+}
+
+.img_main{
+    object-fit: cover;
+    border-radius: 15px;
+    height: 738px;
+}
+
+.img_main_home{
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.article_img_reservation{
+    width: 50%;
+    margin: 1rem 1.5rem 1rem 0;
+}
+
+.section_main_home{
+    position: relative;
+    z-index: 2;
+    width: 75%;
+    margin: auto;
+    color: #02A5C3;
+    display: flex;
+    justify-content: space-between;
+}
+
+.section_main_reservation{
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-evenly;
+    width: 75%;
+}
+
+.form_reservation{
+    border-radius: 15px;
+    background-color: white;
+    width: 50%;
+    margin: 1rem 0 1rem 1.5rem;
+}
+
+.section_form_reservation{
+    max-width: 452px;
+    margin: 0 auto 1rem auto;
+}
+
+.article_kitchen{
+    max-width: 335px;
+    margin-left: 1rem;
+}
+
+.article_chambre1{
+    max-width: 335px;
+    margin: 0 1rem;
+}
+
+.article_chambre2{
+    max-width: 335px;
+    margin-right: 1rem;
+}
+
+.btn{
+    background:  #C1E97E;
+    color: white;
+}
+
+.btn:hover{
+    background: #02A5C3;
+    border: none;
+    color: white;
+}
+
+.btn_reserver_home{
+   width: 450px;
+   height: 65px;
+   font-size: 26px;
+}
+
+.text_nbr_people{
+    padding-top: 0.375rem;
+}
+
+.band_green{
+    height: 165px;
+    background: #C1E97E;
+    position: relative;
+    z-index: 2;
+}
+
+.btn_reserver_reservation{
+   width: 80%;
+   height: 65px;
+   font-size: 26px;
+}
+
+footer{
+    height: 246px;
+    position: relative;
+    z-index: 2;
+    background-color: white;
+}
+
+.logo_footer{
+    margin-top: 22px;
+    margin-right: 155px;
+}
+
+.section_footer{
+    margin-top: 48px;
+}
+
+.reglement-title-footer{
+    margin-left: 4rem;
+}
+
+.copyright{
+    text-align: end;
+    margin: 1.5rem 3rem 0 0;
+}
+
+.alert_mail_isVerified{
+    position: absolute;
+    z-index: 5;
+    top: 74px;
+    border-radius: 0;
+    left: 0;
+    right: 0;
+}
+
+.alert_token_isVerified{
+    position: absolute;
+    z-index: 6;
+    top: 74px;
+    border-radius: 0;
+    left: 0;
+    right: 0;
+}
+
+@media (max-width: 1362px) {
+    .section_main_home{
+        width: 1021px;
+    }
+    .logo_footer{
+        margin-right: 35px;
+    }
+}
+
+@media (max-width: 991px) {
+    .bg_title_header{
+        max-width: 90%;
+        padding: 12px;
+    }   
+    .text_band_green{
+        display: none;
+    } 
+    .band_green{
+        height: 125px;
+    }
+    .logo_footer{
+        display: none;
+    }
+    .section_footer{
+        flex-direction: column;
+        align-items: center;
+    }
+    .reglement-title-footer{
+        margin-top: 48px;
+    }
+    .connexion_title_footer{
+        margin-top: 48px;
+    }
+    .copyright{
+        text-align: center;
+        margin: 48px 0 0 0;
+    }
+    .section_main_reservation{
+        flex-direction: column;
+    }
+    .article_img_reservation{
+        width: 100%;
+        margin: 1rem 0 0 0;
+    }
+    .form_reservation{
+        border-radius: 0 0 15px 15px;
+        width: 100%;
+        margin: 0 0 1rem 0;
+    }
+    .img_main{
+        border-radius: 15px 15px 0 0;
+        height: 350px;
+    }
+    .img_vector2_reservation{
+        top: 1545px;
+    }
+}
+
+@media (max-width: 665px) {
+    .bg_title_header{
+        max-width: 90%;
+        padding: 5px 10px;
+    }
+    .section_main_reservation{
+        width: 90%;
+    } 
+}
+
+@media (max-width: 1200px) {
+    .img_header{
+        object-position: center 0;
+    }
+}
+
+@media (max-width: 1021px) {
+    .section_main_home{
+        width: 308px;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .article_kitchen{
+        margin: 0;
+    }
+    
+    .article_chambre1{
+        margin: 2rem 0;
+    }
+    
+    .article_chambre2{
+        margin: 0;
+    }
+    .btn_reserver_home{
+        width: 270px;
+    }
+    .img_vector2_home{
+        top: 1670px;
+    }
+}

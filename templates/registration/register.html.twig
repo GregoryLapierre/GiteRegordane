@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+	<main>
+		<h2>INSCRIPTION</h2>
+		<section class="container my-5">
+			<article class="row">
+				<div class="col col-md-9 col-lg-6 mx-auto">
+					{{ form_start(registrationForm) }}
+					<fieldset>
+						{{ form_row(registrationForm.name) }}
+						{{ form_row(registrationForm.firstname) }}
+						{{ form_row(registrationForm.phone) }}
+						{{ form_row(registrationForm.email) }}
+						{{ form_row(registrationForm.plainPassword) }}
+						{{ form_row(registrationForm.adress) }}
+						{{ form_row(registrationForm.postal) }}
+						{{ form_row(registrationForm.city) }}
+						{{ form_row(registrationForm.RGPDConsent) }}
+					</fieldset>
+
+					<button type="submit" class="btn btn-lg shadow mt-3">M'inscrire</button>
+					{{ form_end(registrationForm) }}
+				</div>
+			</article>
+		</section>
+	</main>
+{% endblock %}
