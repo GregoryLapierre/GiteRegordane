@@ -34,13 +34,13 @@
 						</span>
 						<span class="col">
 							<label for="inputNumberPeople" class="visually-hidden">Nombre d'adultes</label>
-							<input type="number" min="1" class="form-control shadow" id="inputNumberPeople" placeholder="Nombres d'adultes" required>
+							<input type="number" min="1" class="form-control shadow" id="inputNumberAdult" placeholder="Nombres d'adultes" onchange="price()" required>
 						</span>
 					</div>
-					<h4 class="text-center py-5" id="priceRender"></h4>
+					<div class="text-center py-5" id="priceRender"></div>
 					{# <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"> #}
 					<div class="d-flex justify-content-center">
-						<a class="btn shadow my-5 d-flex align-items-center justify-content-center btn_reserver_reservation" href="#" role="button">Réserver</a>
+						<a class="btn shadow mb-5 d-flex align-items-center justify-content-center btn_reserver_reservation" href="#" role="button">Réserver</a>
 					</div>
 				</form>
 			</article>

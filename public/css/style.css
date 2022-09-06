@@ -92,7 +92,7 @@ h2{
 .img_main{
     object-fit: cover;
     border-radius: 15px;
-    height: 738px;
+    height: 100%;
 }
 
 .img_main_home{
