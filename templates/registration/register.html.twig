@@ -5,10 +5,11 @@
 
 {% block body %}
 	<main>
+		<img class="img_vector1" src="/img/Vector1.png" alt="image_vector">
 		<h2>INSCRIPTION</h2>
 		<section class="container my-5">
 			<article class="row">
-				<div class="col col-md-9 col-lg-6 mx-auto">
+				<div class="col col-md-9 col-lg-6 mx-auto register">
 					{{ form_start(registrationForm) }}
 					<fieldset>
 						{{ form_row(registrationForm.name) }}
@@ -27,5 +28,6 @@
 				</div>
 			</article>
 		</section>
+		<img class="img_vector2_register" src="/img/Vector2.png" alt="image_vector">
 	</main>
 {% endblock %}

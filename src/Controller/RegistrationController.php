@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -28,8 +27,7 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
+            $user->setPassword($userPasswordHasher->hashPassword(
                     $user,
                     $form->get('plainPassword')->getData()
                 )
@@ -103,8 +101,11 @@ class RegistrationController extends AbstractController
     #[Route('/renvoiverif', name: 'resend_verif')]
     public function resendVerif(JWTService $jwt, SendMailService $mail, UserRepository $userRepository): Response
     {
+        /**
+         * @var App\Entity\User $user
+         */
         $user = $this->getUser();
-        // dd($user);
+       
         if (!$user) {
             $this->addFlash('danger', 'Vous devez être connecté pour accéder à cette page');
             return $this->redirectToRoute('app_login');

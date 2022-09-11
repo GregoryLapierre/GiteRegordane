@@ -5,10 +5,11 @@
 
 {% block body %}
 	<main>
+		<img class="img_vector1_login" src="/img/Vector1.png" alt="image_vector">
 		<h2>ME CONNECTER</h2>
 		<section class="container my-5">
 			<article class="row">
-				<div class="col col-md-9 col-lg-6 mx-auto">
+				<div class="col col-md-9 col-lg-6 mx-auto login">
 					<form method="post">
 						{% if error %}
 							<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -37,9 +38,13 @@
 						<button class="btn btn-lg shadow mt-3" type="submit">
 							Me connecter
 						</button>
+						<a class="btn btn-lg shadow mt-3 ms-2" type="button" href="{{ path('app_register') }}">
+							M'inscrire
+						</a>
 					</form>
 				</div>
 			</article>
 		</section>
+		<img class="img_vector2_login" src="/img/Vector2.png" alt="image_vector">
 	</main>
 {% endblock %}

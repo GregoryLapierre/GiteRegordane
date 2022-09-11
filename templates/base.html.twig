@@ -53,9 +53,16 @@
 							</li>
 						{% endif %}
 
-						<li class="nav-item mx-3">
-							<a class="nav-link" href="#">Nous trouver</a>
-						</li>
+						{% if app.request.uri == 'https://127.0.0.1:8000/findus' %}
+							<li class="nav-item mx-3">
+								<a class="nav-link link_active_header" href="{{ path('app_find_us') }}">Nous trouver</a>
+							</li>
+						{% else %}
+							<li class="nav-item mx-3">
+								<a class="nav-link" href="{{ path('app_find_us') }}">Nous trouver</a>
+							</li>
+						{% endif %}
+
 						<li class="nav-item mx-3">
 							<a class="nav-link" href="#">Galerie</a>
 						</li>
@@ -104,7 +111,8 @@
 				<div class="alert alert-warning alert-dismissible alert_mail_isVerified" role="alert">
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermé"></button>
 					<div class="alert-message">
-						<strong>Votre compte n'est pas activé</strong>, <a href="{{ path('resend_verif') }}">m'envoyer un lien d'activation</a>
+						<strong>Votre compte n'est pas activé</strong>,
+						<a href="{{ path('resend_verif') }}">m'envoyer un lien d'activation</a>
 					</div>
 				</div>
 			{% endif %}
@@ -153,9 +161,16 @@
 									</li>
 								{% endif %}
 
-								<li class="ms-3">
-									<a class="link_footer" href="#">Nous trouver</a>
-								</li>
+								{% if app.request.uri == 'https://127.0.0.1:8000/findus' %}
+									<li class="ms-3">
+										<a class="link_active_footer" href="{{ path('app_find_us') }}">Nous trouver</a>
+									</li>
+								{% else %}
+									<li class="ms-3">
+										<a class="link_footer" href="{{ path('app_find_us') }}">Nous trouver</a>
+									</li>
+								{% endif %}
+								
 								<li class="ms-3">
 									<a class="link_footer" href="#">Galerie</a>
 								</li>
@@ -210,5 +225,7 @@
 				</div>
 			</footer>
 		</body>
-	</body>
-</html></body></html>
+		
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="../js/script.js"></script>
+</html>

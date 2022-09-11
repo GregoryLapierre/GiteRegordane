@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ReservationRepository;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ReservationRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
@@ -12,29 +14,40 @@ class Reservation
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $id;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
+    #[ORM\JoinColumn]
+    private ?User $user;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $start_date = null;
+    #[Assert\NotBlank]
+    private ?\DateTimeInterface $start_date;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $end_start = null;
+    #[Assert\NotBlank]
+    private ?\DateTimeInterface $end_date;
 
     #[ORM\Column]
-    private ?int $number_person = null;
+    #[Assert\NotBlank]
+    private ?int $number_person;
 
     #[ORM\Column]
-    private ?float $price = null;
+    private ?float $price;
 
     #[ORM\Column(length: 255)]
-    private ?string $status = null;
+    private ?string $status;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $created_at = null;
+    private ?\DateTimeImmutable $created_at;
+
+    #[ORM\Column]
+    private ?float $deposit = null;
+
+    public function __construct()
+    {
+        $this->created_at = new DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -58,21 +71,21 @@ class Reservation
         return $this->start_date;
     }
 
-    public function setStartDate(\DateTimeInterface $start_date): self
+    public function setStartDate(?\DateTimeInterface $start_date): self
     {
         $this->start_date = $start_date;
 
         return $this;
     }
 
-    public function getEndStart(): ?\DateTimeInterface
+    public function getEndDate(): ?\DateTimeInterface
     {
-        return $this->end_start;
+        return $this->end_date;
     }
 
-    public function setEndStart(\DateTimeInterface $end_start): self
+    public function setEndDate(?\DateTimeInterface $end_date): self
     {
-        $this->end_start = $end_start;
+        $this->end_date = $end_date;
 
         return $this;
     }
@@ -82,7 +95,7 @@ class Reservation
         return $this->number_person;
     }
 
-    public function setNumberPerson(int $number_person): self
+    public function setNumberPerson(?int $number_person): self
     {
         $this->number_person = $number_person;
 
@@ -121,6 +134,18 @@ class Reservation
     public function setCreatedAt(\DateTimeImmutable $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getDeposit(): ?float
+    {
+        return $this->deposit;
+    }
+
+    public function setDeposit(float $deposit): self
+    {
+        $this->deposit = $deposit;
 
         return $this;
     }

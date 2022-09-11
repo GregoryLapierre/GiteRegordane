@@ -10,39 +10,45 @@
 
 		<section class="my-5 mx-auto section_main_reservation">
 			<article class="article_img_reservation">
-					<img class="w-100 shadow img_main" src="/img/reservation.jpg" alt="image_façade">
+				<img class="w-100 shadow img_main" src="/img/reservation.jpg" alt="image_façade">
 			</article>
 			<article class="border shadow form_reservation">
-				<form class="py-5 px-3">
-					<div class="row row-cols-2 gx-2 gy-5 section_form_reservation">
-						<span class="col py-2">
-							<p>Date de début</p>
-						</span>
-						<span class="col">
-							<label for="inputDateIn" class="visually-hidden">jj/mm/aaaa</label>
-							<input type="date" class="form-control shadow" id="inputDateIn" placeholder="jj/mm/aaaa" onchange="price()" onclick="dateMin()" required>
-						</span>
-						<span class="col py-2">
-							<p>Date de fin</p>
-						</span>
-						<span class="col">
-							<label for="inputDateOut" class="visually-hidden">jj/mm/aaaa</label>
-							<input type="date" class="form-control shadow" id="inputDateOut" placeholder="jj/mm/aaaa" onchange="price()" onclick="dateMin()" required>
-						</span>
-						<span class="col text_nbr_people">
-							<p>Nombre d'adultes</p>
-						</span>
-						<span class="col">
-							<label for="inputNumberPeople" class="visually-hidden">Nombre d'adultes</label>
-							<input type="number" min="1" class="form-control shadow" id="inputNumberAdult" placeholder="Nombres d'adultes" onchange="price()" required>
-						</span>
-					</div>
-					<div class="text-center py-5" id="priceRender"></div>
-					{# <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"> #}
+				{{ form_start(reservationForm, {'attr': {'class': 'py-5 px-3'}}) }}
+				<div class="row row-cols-2 gx-2 gy-5 section_form_reservation">
+					<span class="col py-2">
+						<p>Date de début</p>
+					</span>
+					<span class="col">
+						{{ form_row(reservationForm.start_date, { 'id': 'inputDateIn'}) }}
+					</span>
+					<span class="col py-2">
+						<p>Date de fin</p>
+					</span>
+					<span class="col">
+						{{ form_row(reservationForm.end_date, { 'id': 'inputDateOut'}) }}
+					</span>
+					<span class="col text_nbr_people">
+						<p>Nombre d'adultes</p>
+					</span>
+					<span class="col">
+						{{ form_row(reservationForm.number_person, { 'id': 'inputNumberAdult'}) }}
+					</span>
+				</div>
+				<div class="text-center py-5" id="priceRender"></div>
+				{% if app.user and app.user.isVerified == false %}
 					<div class="d-flex justify-content-center">
-						<a class="btn shadow mb-5 d-flex align-items-center justify-content-center btn_reserver_reservation" href="#" role="button">Réserver</a>
+						<p class="shadow mb-5 d-flex align-items-center justify-content-center active_account">Activer votre compte</p>
 					</div>
-				</form>
+				{% elseif app.user and app.user.isVerified == true %}
+					<div class="d-flex justify-content-center">
+						<button class="btn shadow mb-5 d-flex align-items-center justify-content-center btn_reserver_reservation" type="submit">Accès au paiement</button>
+					</div>
+				{% else %}
+					<div class="d-flex justify-content-center">
+						<a class="btn shadow mb-5 d-flex align-items-center justify-content-center btn_reserver_reservation" href="{{ path('app_login') }}" type="button">Me connecter</a>
+					</div>
+				{% endif %}
+				{{ form_end(reservationForm) }}
 			</article>
 		</section>
 		<img class="img_vector2_reservation" src="/img/Vector2.png" alt="image_vector">

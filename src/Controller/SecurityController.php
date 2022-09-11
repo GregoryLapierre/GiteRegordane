@@ -11,10 +11,8 @@ use App\Form\ResetPasswordRequestFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpKernel\HttpCache\ResponseCacheStrategy;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
@@ -74,7 +72,7 @@ class SecurityController extends AbstractController
                 $mail->send(
                     'no-reply@e-commerce.fr',
                     $user->getEmail(),
-                    'Réinitialisation de mot de passe',
+                    'Réinitialisation de mot de passe sur Gîte de la Régordane',
                     'password_reset',
                     $context
                 );
@@ -83,8 +81,8 @@ class SecurityController extends AbstractController
                 return $this->redirectToRoute('app_login');
             }
             //$user est null
-            $this->addFlash('danger', 'Un problème est survenu');
-            return $this->redirectToRoute('app_login');
+            $this->addFlash('danger', 'Ce compte utilisateur n\'existe pas');
+            
         }
 
         return $this->render('security/reset_password_request.html.twig', [

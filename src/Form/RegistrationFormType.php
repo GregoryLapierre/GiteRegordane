@@ -41,7 +41,17 @@ class RegistrationFormType extends AbstractType
                 'attr' => [
                     'class' => 'form-control'
                 ],
-                'label' => 'Nom'
+                'label' => 'Nom',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer un nom',
+                    ]),
+                    new Regex([
+                        'pattern' => '/\d/',
+                        'match' => false,
+                        'message' => 'Votre nom ne peut pas contenir de chiffres'
+                    ])
+                ]
             ])
             ->add('firstname', TextType::class, [
                 'attr' => [
@@ -50,6 +60,16 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Prénom',
                 'label_attr' => [
                     'class' => 'mt-2'
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer un prénom',
+                    ]),
+                    new Regex([
+                        'pattern' => '/\d/',
+                        'match' => false,
+                        'message' => 'Votre prénom ne peut pas contenir de chiffres'
+                    ])
                 ]
             ])
             ->add('phone', TextType::class, [
@@ -77,6 +97,11 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Adresse',
                 'label_attr' => [
                     'class' => 'mt-2'
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer une adresse',
+                    ])
                 ]
             ])
             ->add('postal', TextType::class, [
@@ -104,6 +129,16 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Ville',
                 'label_attr' => [
                     'class' => 'mt-2'
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer une ville',
+                    ]),
+                    new Regex([
+                        'pattern' => '/\d/',
+                        'match' => false,
+                        'message' => 'Votre ville ne peut pas contenir de chiffres'
+                    ])
                 ]
             ])
             ->add('RGPDConsent', CheckboxType::class, [
@@ -114,7 +149,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter nos conditions',
                     ]),
                 ],
             ])
@@ -135,10 +170,14 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Veuillez entrer un mot de passe',
                     ]),
                     new Length([
-                        'min' => 6,
+                        'min' => 8,
                         'minMessage' => 'Votre mot de passe doit comporter au moins {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
+                    ]),
+                    new Regex([
+                        'pattern' => '/^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/',
+                        'message' => 'Votre mot de passe doit comporter au moins 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial'
                     ])
                 ]
             ])

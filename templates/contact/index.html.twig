@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+	<main>
+		<img class="img_vector1" src="/img/Vector1.png" alt="image_vector">
+		<h2>NOUS CONTACTER</h2>
+		<section class="container my-5">
+			<article class="row">
+				<div class="col col-md-9 col-lg-6 mx-auto contact">
+					{{ form_start(contactForm) }}
+					<fieldset>
+						{{ form_row(contactForm.name) }}
+						{{ form_row(contactForm.firstname) }}
+						{{ form_row(contactForm.email) }}
+						{{ form_row(contactForm.subject) }}
+						{{ form_row(contactForm.message) }}
+					</fieldset>
+
+					<button type="submit" class="btn btn-lg shadow mt-3">Envoyer</button>
+					{{ form_end(contactForm) }}
+				</div>
+			</article>
+		</section>
+		<img class="img_vector2_register" src="/img/Vector2.png" alt="image_vector">
+	</main>
+
+{% endblock %}

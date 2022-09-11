@@ -1,0 +1,4 @@
+<h1>Réservation validée</h1>
+<p>Bonjour {{ user.firstname }} {{ user.name }}.</p>
+<p>Votre réservation pour la période du {{ reservation.getStartDate() | date('d/m/Y') }} au {{ reservation.getEndDate() | date('d/m/Y') }} a bien été validé.</p>
+<p>Nous vous remercions pour votre confiance.</p>
