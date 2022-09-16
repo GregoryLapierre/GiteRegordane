@@ -33,7 +33,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-						{% if app.request.uri == 'https://127.0.0.1:8000/' %}
+						{% if app.request.uri == 'https://127.0.0.1:8000/' or app.request.uri == 'https://localhost:8000/' %}
 							<li class="nav-item mx-3">
 								<a class="nav-link link_active_header" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
 							</li>
@@ -43,7 +43,7 @@
 							</li>
 						{% endif %}
 
-						{% if app.request.uri == 'https://127.0.0.1:8000/reservation' %}
+						{% if app.request.uri == 'https://127.0.0.1:8000/reservation' or app.request.uri == 'https://localhost:8000/reservation' %}
 							<li class="nav-item mx-3">
 								<a class="nav-link link_active_header" href="{{ path('app_reservation') }}">Réserver</a>
 							</li>
@@ -53,7 +53,7 @@
 							</li>
 						{% endif %}
 
-						{% if app.request.uri == 'https://127.0.0.1:8000/findus' %}
+						{% if app.request.uri == 'https://127.0.0.1:8000/findus' or app.request.uri == 'https://localhost:8000/findus' %}
 							<li class="nav-item mx-3">
 								<a class="nav-link link_active_header" href="{{ path('app_find_us') }}">Nous trouver</a>
 							</li>
@@ -63,12 +63,25 @@
 							</li>
 						{% endif %}
 
-						<li class="nav-item mx-3">
-							<a class="nav-link" href="#">Galerie</a>
-						</li>
-						<li class="nav-item mx-3">
-							<a class="nav-link" href="#">Contact</a>
-						</li>
+						{% if app.request.uri == 'https://127.0.0.1:8000/gallery' or app.request.uri == 'https://localhost:8000/gallery' %}
+							<li class="nav-item mx-3">
+								<a class="nav-link link_active_header" href="{{ path('app_gallery') }}">Galerie</a>
+							</li>
+						{% else %}
+							<li class="nav-item mx-3">
+								<a class="nav-link" href="{{ path('app_gallery') }}">Galerie</a>
+							</li>
+						{% endif %}
+
+						{% if app.request.uri == 'https://127.0.0.1:8000/contact' or app.request.uri == 'https://localhost:8000/contact' %}
+							<li class="nav-item mx-3">
+								<a class="nav-link link_active_header" href="{{ path('app_contact') }}">Contact</a>
+							</li>
+						{% else %}
+							<li class="nav-item mx-3">
+								<a class="nav-link" href="{{ path('app_contact') }}">Contact</a>
+							</li>
+						{% endif %}
 					</ul>
 					<ul class="navbar-nav me-2">
 						{% if app.user and app.user.isVerified == false %}
@@ -84,7 +97,7 @@
 								<a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
 							</li>
 						{% else %}
-							{% if app.request.uri == 'https://127.0.0.1:8000/register' %}
+							{% if app.request.uri == 'https://127.0.0.1:8000/register' or app.request.uri == 'https://localhost:8000/register' %}
 								<li class="nav-item mx-3">
 									<a class="nav-link link_active_header" href="{{ path('app_register') }}">M'inscrire</a>
 								</li>
@@ -94,7 +107,7 @@
 								</li>
 							{% endif %}
 
-							{% if app.request.uri == 'https://127.0.0.1:8000/login' %}
+							{% if app.request.uri == 'https://127.0.0.1:8000/login' or app.request.uri == 'https://localhost:8000/login' %}
 								<li class="nav-item mx-3">
 									<a class="nav-link link_active_header" href="{{ path('app_login') }}">Me connecter</a>
 								</li>
@@ -104,6 +117,12 @@
 								</li>
 							{% endif %}
 						{% endif %}
+												{% if is_granted('ROLE_ADMIN') %}
+							<li class="nav-item mx-3">
+								<a class="nav-link" href="{{ path('admin') }}">Dashboard</a>
+							</li>
+						{% endif %}
+
 					</ul>
 				</div>
 			</nav>
@@ -128,7 +147,7 @@
 		{% block body %}{% endblock %}
 
 		<footer>
-			{% if app.request.uri == 'https://127.0.0.1:8000/' %}
+			{% if app.request.uri == 'https://127.0.0.1:8000/' or app.request.uri == 'https://localhost:8000/' %}
 				<div class="d-flex">
 				{% else %}
 					<div class="d-flex border-top">
@@ -141,7 +160,7 @@
 									PLAN DE SITE
 								</li>
 
-								{% if app.request.uri == 'https://127.0.0.1:8000/' %}
+								{% if app.request.uri == 'https://127.0.0.1:8000/' or app.request.uri == 'https://localhost:8000/' %}
 									<li class="mt-2 ms-3">
 										<a class="link_active_footer" href="{{ path('app_home') }}">Accueil</a>
 									</li>
@@ -151,7 +170,7 @@
 									</li>
 								{% endif %}
 
-								{% if app.request.uri == 'https://127.0.0.1:8000/reservation' %}
+								{% if app.request.uri == 'https://127.0.0.1:8000/reservation' or app.request.uri == 'https://localhost:8000/reservation' %}
 									<li class="ms-3">
 										<a class="link_active_footer" href="{{ path('app_reservation') }}">Réserver</a>
 									</li>
@@ -161,7 +180,7 @@
 									</li>
 								{% endif %}
 
-								{% if app.request.uri == 'https://127.0.0.1:8000/findus' %}
+								{% if app.request.uri == 'https://127.0.0.1:8000/findus' or app.request.uri == 'https://localhost:8000/findus' %}
 									<li class="ms-3">
 										<a class="link_active_footer" href="{{ path('app_find_us') }}">Nous trouver</a>
 									</li>
@@ -171,12 +190,25 @@
 									</li>
 								{% endif %}
 								
-								<li class="ms-3">
-									<a class="link_footer" href="#">Galerie</a>
-								</li>
-								<li class="ms-3">
-									<a class="link_footer" href="#">Contact</a>
-								</li>
+								{% if app.request.uri == 'https://127.0.0.1:8000/gallery' or app.request.uri == 'https://localhost:8000/gallery' %}
+									<li class="ms-3">
+										<a class="link_active_footer" href="{{ path('app_gallery') }}">Galerie</a>
+									</li>
+								{% else %}
+									<li class="ms-3">
+										<a class="link_footer" href="{{ path('app_gallery') }}">Galerie</a>
+									</li>
+								{% endif %}
+
+								{% if app.request.uri == 'https://127.0.0.1:8000/contact' or app.request.uri == 'https://localhost:8000/contact' %}
+									<li class="ms-3">
+										<a class="link_active_footer" href="{{ path('app_contact') }}">Contact</a>
+									</li>
+								{% else %}
+									<li class="ms-3">
+										<a class="link_footer" href="{{ path('app_contact') }}">Contact</a>
+									</li>
+								{% endif %}
 							</ul>
 							<ul class="navbar-nav col">
 								<li class="fw-bold connexion_title_footer">
@@ -187,7 +219,7 @@
 										<a class="link_footer" href="{{ path('app_logout') }}">Me déconnecter</a>
 									</li>
 								{% else %}
-									{% if app.request.uri == 'https://127.0.0.1:8000/register' %}
+									{% if app.request.uri == 'https://127.0.0.1:8000/register' or app.request.uri == 'https://localhost:8000/register' %}
 										<li class="mt-2 ms-2">
 											<a class="link_active_footer m-0" href="{{ path('app_register') }}">M'inscrire</a>
 										</li>
@@ -197,7 +229,7 @@
 										</li>
 									{% endif %}
 
-									{% if app.request.uri == 'https://127.0.0.1:8000/login' %}
+									{% if app.request.uri == 'https://127.0.0.1:8000/login' or app.request.uri == 'https://localhost:8000/login' %}
 										<li class="ms-2">
 											<a class="link_active_footer" href="{{ path('app_login') }}">Me connecter</a>
 										</li>

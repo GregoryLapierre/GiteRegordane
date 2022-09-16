@@ -108,7 +108,21 @@ header{
     top: 450px;
     left: -50px;
     z-index: 1;
-  }
+}
+
+.img_vector2_contact {
+    position: absolute;
+    top: 780px;
+    left: -50px;
+    z-index: 1;
+}
+
+.img_vector2_gallery{
+    position: absolute;
+    top: 500px;
+    left: -50px;
+    z-index: 1;
+}
 
 h2{
     color: #02A5C3;
@@ -116,6 +130,12 @@ h2{
     position: relative;
     margin: 3rem 0 1rem 0;
     text-align: center;
+}
+
+h4{
+    color: #02A5C3;
+    z-index: 5;
+    position: relative;
 }
 
 .img_main{
@@ -222,9 +242,13 @@ h2{
     border-radius: 0.375rem;
 }
 
-.findUs, .register, .login, .contact{
+.findUs, .register, .login, .contact, .gallery{
     position: relative;
     z-index: 2;
+}
+
+.grecaptcha-badge{
+    z-index: 3;
 }
 
 footer{
@@ -268,6 +292,10 @@ footer{
     border-radius: 0;
     left: 0;
     right: 0;
+}
+
+.imageGallery{
+    object-fit: cover;
 }
 
 @media (max-width: 1362px) {

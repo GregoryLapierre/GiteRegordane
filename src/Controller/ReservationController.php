@@ -20,7 +20,7 @@ class ReservationController extends AbstractController
         $form = $this->createForm(ReservationFormType::class, $reservation);
         $form->handleRequest($request);
 
-        if ($form->get('start_date')->getViewData() <= $form->get('end_date')->getViewData() && $form->isSubmitted() && $form->isValid()) {
+        if ($form->get('start_date')->getViewData() < $form->get('end_date')->getViewData() && $form->isSubmitted() && $form->isValid()) {
             $dateIn = $form->get('start_date')->getViewData();
             $dateOut = $form->get('end_date')->getViewData();
             $number_adult = $form->get('number_person')->getViewData();
@@ -42,6 +42,9 @@ class ReservationController extends AbstractController
             $entityManager->flush();
 
             return $this->redirectToRoute('app_stripe_checkout_session', ['id' => $reservation->getId()]);
+        }
+        elseif($form->get('start_date')->getViewData() >= $form->get('end_date')->getViewData()  && $form->isSubmitted() && $form->isValid()){
+            $this->addFlash('danger', 'Échec lors de l\'envoi du formulaire');
         }
 
         return $this->render('reservation/index.html.twig', [
