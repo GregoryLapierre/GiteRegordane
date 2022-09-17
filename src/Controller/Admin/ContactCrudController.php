@@ -21,7 +21,7 @@ class ContactCrudController extends AbstractCrudController
         ->remove(Crud::PAGE_INDEX, Action::NEW)
         ->remove(Crud::PAGE_INDEX, Action::EDIT)
         ->update(Crud::PAGE_INDEX, Action::DELETE, function (Action $action) {
-            return $action->setIcon('fa fa-trash')->addCssClass('btn btn-danger text-primary');
+            return $action->setIcon('fa fa-trash')->addCssClass('btn btn-danger text-light');
         });
     }
 

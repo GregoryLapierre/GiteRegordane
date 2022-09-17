@@ -24,9 +24,9 @@ class StripeCheckoutSessionController extends AbstractController
 
         $checkout_session = Session::create([
             'customer_email' => $user->getEmail(),
-            "payment_method_types" => ['card'],
+            'client_reference_id' => $user->getId(),
+            'payment_method_types' => ['card'],
             'line_items' => [[
-                # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
                 'price_data' => [
                     'currency' => 'EUR',
                     'product_data' => [

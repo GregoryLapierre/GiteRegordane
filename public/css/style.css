@@ -43,11 +43,11 @@ header{
 }
 
 .link_active_footer{
-    color: black;
+    color: rgba(0, 0, 0, 0.7);
 }
 
 .link_active_footer:hover{
-    color: black;
+    color: #02A5C3;
 }
 
 .link_footer{
@@ -119,8 +119,8 @@ header{
 
 .img_vector2_gallery{
     position: absolute;
-    top: 500px;
-    left: -50px;
+    top: 1900px;
+    left: 0px;
     z-index: 1;
 }
 
@@ -133,7 +133,6 @@ h2{
 }
 
 h4{
-    color: #02A5C3;
     z-index: 5;
     position: relative;
 }

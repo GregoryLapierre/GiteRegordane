@@ -11,10 +11,10 @@
 
 		{% if kitchens != [] %}
 			<h4 class='mt-5 mb-3 text-center'>Cuisine/Salon</h4>
-			<section class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 mx-4 g-4 justify-content-evenly gallery">
+			<section class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 mx-1 mx-sm-4 g-4 justify-content-evenly gallery">
 				{% for kitchen in kitchens %}
 					<article class="col">
-						<div class="card" style="height: 400px;">
+						<div class="card shadow" style="height: 400px;">
 							<img src="/images/{{ kitchen.getImageName() }}" class="card-img h-100 imageGallery" alt="Cuisine/Salon">
 						</div>
 					</article>
@@ -24,10 +24,10 @@
 
 		{% if bedroomsOne != [] %}
 			<h4 class='mt-5 mb-3 text-center'>Chambre 1</h4>
-			<section class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 mx-4 g-4 justify-content-evenly gallery">
+			<section class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 mx-1 mx-sm-4 g-4 justify-content-evenly gallery">
 				{% for bedroomOne in bedroomsOne %}
 					<article class="col">
-						<div class="card" style="height: 400px;">
+						<div class="card shadow" style="height: 400px;">
 							<img src="/images/{{ bedroomOne.getImageName() }}" class="card-img h-100 imageGallery" alt="Chambre">
 						</div>
 					</article>
@@ -37,10 +37,10 @@
 
 		{% if bedroomsTwo != [] %}
 			<h4 class='mt-5 mb-3 text-center'>Chambre 2</h4>
-			<section class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 mx-4 g-4 justify-content-evenly gallery">
+			<section class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 mx-1 mx-sm-4 g-4 justify-content-evenly gallery">
 				{% for bedroomTwo in bedroomsTwo %}
 					<article class="col">
-						<div class="card" style="height: 400px;">
+						<div class="card shadow" style="height: 400px;">
 							<img src="/images/{{ bedroomTwo.getImageName() }}" class="card-img h-100 imageGallery" alt="Chambre">
 						</div>
 					</article>
