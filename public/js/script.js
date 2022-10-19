@@ -2,18 +2,35 @@ var inputDateIn = document.getElementById("inputDateIn")
 var inputDateOut = document.getElementById("inputDateOut")
 var inputNumberAdult = document.getElementById("inputNumberAdult")
 
+new Litepicker({
+    element: inputDateIn,
+    elementEnd: inputDateOut,
+    singleMode: false,
+    allowRepick: true,
+    lang: "fr",
+    lockDays: datas,
+    disallowLockDaysInRange: true,
+    format : "YYYY-MM-DD",
+    resetButton: true,
+    tooltipText: {"one":"jour","other":"jours"},
+    autoRefresh: true,
+    minDate: dateMin(),
+    setup: (picker) => {
+     picker.on('selected', (startDate, endStart) => {
+         console.log(inputDateIn.value)
+         price_resa()
+         })
+     }
+  });
+
 if (inputDateIn != null && inputDateOut != null && inputNumberAdult != null) {
-    inputDateIn.addEventListener('change', price_resa)
-    inputDateIn.addEventListener('focus', dateMin)
-    inputDateOut.addEventListener('change', price_resa)
-    inputDateOut.addEventListener('focus', dateMin)
     inputNumberAdult.addEventListener('change', price_resa)
 }
 
 function price_resa() {
-    var dateIn = new Date(document.getElementById("inputDateIn").value)
-    var dateOut = new Date(document.getElementById("inputDateOut").value)
-    var numberAdult = document.getElementById("inputNumberAdult").value
+    var dateIn = new Date(inputDateIn.value)
+    var dateOut = new Date(inputDateOut.value)
+    var numberAdult = inputNumberAdult.value
     if (dateOut.getTime() <= dateIn.getTime()) {
         document.getElementById("priceRender").innerHTML = "<h5>Veuillez indiquer une date de fin de séjour supérieure à la date de début</h5>";
     }
@@ -36,10 +53,11 @@ function price_resa() {
 
 function dateMin() {
     var date = new Date()
+    date.setDate(date.getDate() + 1)
     var year = date.getFullYear()
     var month = date.getMonth() + 1
     var day = date.getDate()
-
+    
     if (month < 10) {
         month = "0" + month
     }
@@ -48,6 +66,7 @@ function dateMin() {
         day = "0" + day
     }
 
-    document.getElementById("inputDateIn").setAttribute("min", year + "-" + month + "-" + day)
-    document.getElementById("inputDateOut").setAttribute("min", year + "-" + month + "-" + day)
+    return year + "-" + month + "-" + day
 }
+
+console.log(datas)

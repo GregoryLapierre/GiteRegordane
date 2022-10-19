@@ -17,7 +17,8 @@ class ReservationFormType extends AbstractType
             ->add('start_date', DateType::class, [
                 'widget' => 'single_text',
                 'attr' => [
-                    'class' => 'form-control shadow'
+                    'class' => 'form-control shadow',
+                    'readonly' => true
                 ],
                 'label_attr' => [
                     'class' => 'visually-hidden'
@@ -26,7 +27,8 @@ class ReservationFormType extends AbstractType
             ->add('end_date', DateType::class, [
                 'widget' => 'single_text',
                 'attr' => [
-                    'class' => 'form-control shadow'
+                    'class' => 'form-control shadow',
+                    'readonly' => true
                 ],
                 'label_attr' => [
                     'class' => 'visually-hidden'
