@@ -36,7 +36,8 @@ class ReservationCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->showEntityActionsInlined();
+            ->showEntityActionsInlined()
+            ->setDefaultSort(['id' => 'DESC']);
     }
 
     public function configureFields(string $pageName): iterable

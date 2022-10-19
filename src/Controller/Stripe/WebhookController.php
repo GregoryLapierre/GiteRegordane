@@ -64,7 +64,7 @@ class WebhookController extends AbstractController
                     compact('user', 'reservation')
                 );
                 
-                return $this->json($event->data->object, 200);
+                // return $this->json($event->data->object, 200);
                 return $this->json('Paiement enregistré', 200);
             default:
                 return $this->json('Evenement non pris en charge', 200);

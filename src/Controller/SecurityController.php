@@ -21,10 +21,6 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
-
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
@@ -46,13 +42,10 @@ class SecurityController extends AbstractController
     public function forgottenPassword(Request $request, UserRepository $userRepository, TokenGeneratorInterface $tokenGenerator, EntityManagerInterface $entityManager, SendMailService $mail): Response
     {
         $form = $this->createForm(ResetPasswordRequestFormType::class);
-
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             //Je vais chercher l'utilisateur par son Email
             $user = $userRepository->findOneByEmail($form->get('email')->getData());
-
             //Je vérifie si j'ai un utilisateur
             if ($user) {
                 //Je génère un token de réinitialisation
@@ -60,13 +53,10 @@ class SecurityController extends AbstractController
                 $user->setResetToken($token);
                 $entityManager->persist($user);
                 $entityManager->flush();
-
                 //Je génère un lien de réinitialisation du mot de passe
                 $url = $this->generateUrl('app_reset_password', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
-                
                 //Je crée les données du mail
                 $context = compact('url', 'user');
-
                 //Envoi du mail
                 $mail->send(
                     'no-reply@e-commerce.fr',
@@ -75,13 +65,11 @@ class SecurityController extends AbstractController
                     'password_reset',
                     $context
                 );
-
                 $this->addFlash('success', 'Email envoyé avec succès');
                 return $this->redirectToRoute('app_login');
             }
             //$user est null
             $this->addFlash('danger', 'Ce compte utilisateur n\'existe pas');
-            
         }
 
         return $this->render('security/reset_password_request.html.twig', [
@@ -94,12 +82,9 @@ class SecurityController extends AbstractController
     {
         //Je vérifie si j'ai ce token dans la base de donnée
         $user = $userRepository->findOneByResetToken($token);
-
         if($user){
             $form = $this->createForm(ResetPasswordFormType::class);
-
             $form->handleRequest($request);
-
             if($form->isSubmitted() && $form->isValid()){
                 //J'efface le token
                 $user->setResetToken('');
@@ -115,7 +100,6 @@ class SecurityController extends AbstractController
                 $this->addFlash('success', 'Mot de passe changé avec succès');
                 return $this->redirectToRoute('app_login');
             }
-
             return $this->render('security/reset_password.html.twig', [
                 'passForm' => $form->createView()
             ]);

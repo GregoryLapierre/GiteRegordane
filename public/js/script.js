@@ -14,7 +14,6 @@ function price_resa() {
     var dateIn = new Date(document.getElementById("inputDateIn").value)
     var dateOut = new Date(document.getElementById("inputDateOut").value)
     var numberAdult = document.getElementById("inputNumberAdult").value
-    console.log(numberAdult.length)
     if (dateOut.getTime() <= dateIn.getTime()) {
         document.getElementById("priceRender").innerHTML = "<h5>Veuillez indiquer une date de fin de séjour supérieure à la date de début</h5>";
     }

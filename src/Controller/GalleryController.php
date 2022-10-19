@@ -10,11 +10,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class GalleryController extends AbstractController
 {
     #[Route('/gallery', name: 'app_gallery')]
-    public function index(ImageRepository $imagerepository): Response
+    public function index(ImageRepository $imageRepository): Response
     {
-        $kitchen = $imagerepository->findByCategory('Cuisine/salon');
-        $bedroomOne = $imagerepository->findByCategory('Chambre 1');
-        $bedroomTwo = $imagerepository->findByCategory('Chambre 2');
+        $kitchen = $imageRepository->findByCategory('Cuisine/salon');
+        $bedroomOne = $imageRepository->findByCategory('Chambre 1');
+        $bedroomTwo = $imageRepository->findByCategory('Chambre 2');
 
         return $this->render('gallery/index.html.twig', [
             'kitchens' => $kitchen,

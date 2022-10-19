@@ -5,6 +5,7 @@ namespace App\Controller;
 use DateTime;
 use App\Entity\Reservation;
 use App\Form\ReservationFormType;
+use App\Repository\ReservationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ReservationController extends AbstractController
 {
     #[Route('/reservation', name: 'app_reservation')]
-    public function index(EntityManagerInterface $entityManager, Request $request): Response
+    public function index(EntityManagerInterface $entityManager, Request $request, ReservationRepository $reservationRepository): Response
     {
         $reservation = new Reservation();
         $form = $this->createForm(ReservationFormType::class, $reservation);
@@ -34,21 +35,29 @@ class ReservationController extends AbstractController
             $deposit = round(($price * 0.3), 2);
 
             $reservation->setUser($this->getUser())
-                        ->setStatus('En attente de paiement')
-                        ->setPrice($price)
-                        ->setDeposit($deposit);
+                ->setStatus('En attente de paiement')
+                ->setPrice($price)
+                ->setDeposit($deposit);
 
             $entityManager->persist($reservation);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_stripe_checkout_session', ['id' => $reservation->getId()]);
-        }
-        elseif($form->get('start_date')->getViewData() >= $form->get('end_date')->getViewData()  && $form->isSubmitted() && $form->isValid()){
+        } elseif ($form->get('start_date')->getViewData() >= $form->get('end_date')->getViewData()  && $form->isSubmitted() && $form->isValid()) {
             $this->addFlash('danger', 'Échec lors de l\'envoi du formulaire');
         }
 
+        $dataReservation = $reservationRepository->findByStatus('paiement accepté');
+        $dataReservation = array_map(function (Reservation $data) {
+            return [
+                $data->getStartDate()->format("Y-m-d"),
+                $data->getEndDate()->format("Y-m-d")
+            ];
+        }, $dataReservation);
+
         return $this->render('reservation/index.html.twig', [
             'reservationForm' => $form->createView(),
+            'dataReservation' => $dataReservation
         ]);
     }
 }

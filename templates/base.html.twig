@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>
-			{% block title %}Welcome!
+			{% block title %}Gîte Régordane
 			{% endblock %}
 		</title>
 		<link
@@ -117,7 +117,7 @@
 								</li>
 							{% endif %}
 						{% endif %}
-												{% if is_granted('ROLE_ADMIN') %}
+						{% if is_granted('ROLE_ADMIN') %}
 							<li class="nav-item mx-3">
 								<a class="nav-link" href="{{ path('admin') }}">Dashboard</a>
 							</li>

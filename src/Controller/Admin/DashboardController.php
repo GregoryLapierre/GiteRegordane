@@ -24,8 +24,8 @@ class DashboardController extends AbstractDashboardController
     public function index(): Response
     {
         $url = $this->adminUrlGenerator
-            ->setController(UserCrudController::class)
-            ->generateUrl();
+                    ->setController(UserCrudController::class)
+                    ->generateUrl();
 
         return $this->redirect($url);
     }
@@ -39,10 +39,10 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToUrl('Retour au site', 'fas fa-backward', $this->generateUrl('app_home'));
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-users', User::class);
         yield MenuItem::linkToCrud('Réservation', 'fas fa-house', Reservation::class);
         yield MenuItem::linkToCrud('Messages', 'fas fa-envelope', Contact::class);
         yield MenuItem::linkToCrud('Images', 'fas fa-image', Image::class);
+        yield MenuItem::linkToUrl('Retour au site', 'fas fa-backward', $this->generateUrl('app_home'));
     }
 }
