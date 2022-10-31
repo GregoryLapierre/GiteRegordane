@@ -60,68 +60,66 @@ header{
     text-decoration: underline;
 }
 
-.img_vector1{
+.img_vector1, .img_vector1_login{
     position: absolute;
-    top: 530px;
     right: 0;
     z-index: 1;
+}
+
+.img_vector1{
+    top: 530px;
 }
 
 
 .img_vector1_login{
-    position: absolute;
     top: 490px;
-    right: 0;
+}
+
+.img_vector2_home, .img_vector2_reservation, .img_vector2_findUs, .img_vector2_register, .img_vector2_gallery{
+    position: absolute;
+    left: 0;
     z-index: 1;
 }
 
 .img_vector2_home{
-    position: absolute;
     top: 1085px;
-    left: 0;
-    z-index: 1;
 }
 
 .img_vector2_reservation{
-    position: absolute;
     top: 1085px;
-    left: 0;
-    z-index: 1;
 }
 
 .img_vector2_findUs{
-    position: absolute;
     top: 1180px;
-    left: 0;
-    z-index: 1;
 }
 
-.img_vector2_register {
-    position: absolute;
+.img_vector2_register{
     top: 925px;
-    left: 0;
-    z-index: 1;
 }
 
-.img_vector2_login {
+.img_vector2_login, .img_vector2_contact, .img_vector2_error, .img_vector2_errorServer{
     position: absolute;
-    top: 450px;
     left: -50px;
     z-index: 1;
+}
+.img_vector2_login {
+    top: 450px;
 }
 
 .img_vector2_contact {
-    position: absolute;
     top: 780px;
-    left: -50px;
-    z-index: 1;
+}
+
+.img_vector2_error {
+    top: 587px;
+}
+
+.img_vector2_errorServer {
+    top: 650px;
 }
 
 .img_vector2_gallery{
-    position: absolute;
     top: 1900px;
-    left: 0px;
-    z-index: 1;
 }
 
 h2{
@@ -241,7 +239,7 @@ h4{
     border-radius: 0.375rem;
 }
 
-.findUs, .register, .login, .contact, .gallery{
+.findUs, .register, .login, .contact, .gallery, .error{
     position: relative;
     z-index: 2;
 }

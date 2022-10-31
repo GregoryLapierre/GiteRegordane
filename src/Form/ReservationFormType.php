@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Reservation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -40,7 +41,14 @@ class ReservationFormType extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'form-control shadow',
-                    'min' => 1
+                    'min' => 1,
+                    'max' => 4
+                ],
+                'constraints' => [
+                    new Range([
+                        'min' => 1,
+                        'max' => 4,
+                    ]),              
                 ]
             ])
 

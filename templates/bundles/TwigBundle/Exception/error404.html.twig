@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page non trouvée
+{% endblock %}
+
+{% block body %}
+	<main>
+		<img class="img_vector1" src="/img/Vector1.png" alt="image_vector">
+		<h2>PAGE NON TROUVÉE</h2>
+		<section class="container my-5">
+			<article class="row">
+				<div class="col col-md-9 col-lg-6 mx-auto">
+					<p class="text-center my-5 error">
+						La page demandée est introuvable.<br>Vérifier que l'URL soit juste ou
+						<a href="{{ path('app_home') }}">retourner sur la page d'accueil</a>.
+					</p>
+				</div>
+			</article>
+		</section>
+		<img class="img_vector2_error" src="/img/Vector2.png" alt="image_vector">
+	</main>
+{% endblock %}

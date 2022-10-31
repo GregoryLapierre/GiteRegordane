@@ -35,10 +35,12 @@ class WebhookController extends AbstractController
             );
         } catch (\UnexpectedValueException $e) {
             // Invalid payload
-            return $this->json('Erreur', 400);
+            // return $this->json('Erreur', 400);
+            return $this->render('bundles/TwigBundle/Exception/error.html.twig');
         } catch (\Stripe\Exception\SignatureVerificationException $e) {
             // Invalid signature
-            return $this->json('Erreur', 400);
+            // return $this->json('Erreur', 400);
+            return $this->render('bundles/TwigBundle/Exception/error.html.twig');
         }
 
         // Handle the event

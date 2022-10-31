@@ -12,7 +12,8 @@ class AccessDeniedHandler extends AbstractController implements AccessDeniedHand
 {
     public function handle(Request $request, AccessDeniedException $accessDeniedException): ?Response
     {
-        $this->addFlash('danger', 'Vous n\'avez pas d\'accès');
-        return $this->redirectToRoute('app_home');
+        return $this->render('bundles/TwigBundle/Exception/error403.html.twig');
+        // $this->addFlash('danger', 'Vous n\'avez pas d\'accès');
+        // return $this->redirectToRoute('app_home');
     }
 }

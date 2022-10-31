@@ -20,7 +20,7 @@ class ContactFormType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control shadow'
                 ],
                 'label' => 'Nom',
                 'constraints' => [
@@ -33,7 +33,7 @@ class ContactFormType extends AbstractType
             ])
             ->add('firstname', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control shadow'
                 ],
                 'label' => 'Prénom',
                 'label_attr' => [
@@ -49,7 +49,7 @@ class ContactFormType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control shadow'
                 ],
                 'label_attr' => [
                     'class' => 'mt-2'
@@ -57,7 +57,7 @@ class ContactFormType extends AbstractType
             ])
             ->add('subject', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control shadow'
                 ],
                 'label' => 'Sujet',
                 'label_attr' => [
@@ -66,7 +66,7 @@ class ContactFormType extends AbstractType
             ])
             ->add('message', TextareaType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control shadow',
                     'rows' => '8'
                 ],
                 'label_attr' => [

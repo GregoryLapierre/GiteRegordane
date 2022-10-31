@@ -22,7 +22,7 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control shadow'
                 ],
                 'label_attr' => [
                     'class' => 'mt-2'
@@ -39,7 +39,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('name', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control shadow'
                 ],
                 'label' => 'Nom',
                 'constraints' => [
@@ -55,7 +55,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('firstname', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control shadow'
                 ],
                 'label' => 'Prénom',
                 'label_attr' => [
@@ -74,7 +74,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('phone', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control shadow'
                 ],
                 'label' => 'Téléphone',
                 'label_attr' => [
@@ -92,7 +92,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('adress', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control shadow'
                 ],
                 'label' => 'Adresse',
                 'label_attr' => [
@@ -106,7 +106,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('postal', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control shadow'
                 ],
                 'label' => 'Code postal',
                 'label_attr' => [
@@ -124,7 +124,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('city', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control shadow'
                 ],
                 'label' => 'Ville',
                 'label_attr' => [
@@ -159,7 +159,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'attr' => [
                     'autocomplete' => 'new-password',
-                    'class' => 'form-control'
+                    'class' => 'form-control shadow'
                 ],
                 'label' => 'Mot de passe',
                 'label_attr' => [

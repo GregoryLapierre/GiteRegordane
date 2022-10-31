@@ -17,7 +17,6 @@ new Litepicker({
     minDate: dateMin(),
     setup: (picker) => {
      picker.on('selected', (startDate, endStart) => {
-         console.log(inputDateIn.value)
          price_resa()
          })
      }
@@ -38,6 +37,7 @@ function price_resa() {
         document.getElementById("priceRender").innerHTML = "";
         var diff_time = dateOut.getTime() - dateIn.getTime();
         var nbr_day = (diff_time / (1000 * 3600 * 24)) + 1
+
         if (isNaN(nbr_day) || !numberAdult) {
             return
         }
@@ -68,5 +68,3 @@ function dateMin() {
 
     return year + "-" + month + "-" + day
 }
-
-console.log(datas)
